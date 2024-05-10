@@ -3,6 +3,7 @@ from os import path as ospath
 
 from bot import LOGGER
 from bot.config import Telegram
+from bot.jisshu import Neha
 from bot.helper.exceptions import InvalidHash
 from bot.helper.file_size import get_readable_file_size
 from bot.server.file_properties import get_file_ids
@@ -13,7 +14,7 @@ async def render_page(message_id, secure_hash, is_home=False, is_index=False, is
     tpath = ospath.join('bot', 'server', 'template')
     if is_login:
         async with aiopen(ospath.join(tpath, 'login.html'), 'r') as f:
-            html = (await f.read()).replace("<!-- Error -->", error_message if error_message else '').replace("<!-- Theme -->", Telegram.THEME).replace("<!-- RedirectURL -->", redirect_url)
+            html = (await f.read()).replace("<!-- Error -->", error_message if error_message else '').replace("<!-- Theme -->", Neha.THEME).replace("<!-- RedirectURL -->", redirect_url)
     elif is_home:
         async with aiopen(ospath.join(tpath, 'home.html'), 'r') as f:
             html = (await f.read()).replace("<!-- Print -->", html).replace("<!-- Theme -->", Telegram.THEME)
