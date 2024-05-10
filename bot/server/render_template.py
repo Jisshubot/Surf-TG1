@@ -14,13 +14,13 @@ async def render_page(message_id, secure_hash, is_home=False, is_index=False, is
     tpath = ospath.join('bot', 'server', 'template')
     if is_login:
         async with aiopen(ospath.join(tpath, 'login.html'), 'r') as f:
-            html = (await f.read()).replace("<!-- Error -->", error_message if error_message else '').replace("<!-- Theme -->", Neha.THEME).replace("<!-- RedirectURL -->", redirect_url)
+            html = (await f.read()).replace("<!-- Error -->", error_message if error_message else '').replace("<!-- Theme -->", Neha.THEMEE).replace("<!-- RedirectURL -->", redirect_url)
     elif is_home:
         async with aiopen(ospath.join(tpath, 'home.html'), 'r') as f:
-            html = (await f.read()).replace("<!-- Print -->", html).replace("<!-- Theme -->", Telegram.THEME)
+            html = (await f.read()).replace("<!-- Print -->", html).replace("<!-- Theme -->", Neha.THEMEE)
     elif is_index:
         async with aiopen(ospath.join(tpath, 'index.html'), 'r') as f:
-            html = (await f.read()).replace("<!-- Print -->", html).replace("<!-- Theme -->", Telegram.THEME).replace("<!-- Title -->", title).replace("<!-- Chat_id -->", chat_id)
+            html = (await f.read()).replace("<!-- Print -->", html).replace("<!-- Theme -->", Neha.THEMEE).replace("<!-- Title -->", title).replace("<!-- Chat_id -->", chat_id)
     else:
         file_data = await get_file_ids(StreamBot, chat_id=int(chat_id), message_id=int(message_id))
         if file_data.unique_id[:6] != secure_hash:
@@ -31,8 +31,8 @@ async def render_page(message_id, secure_hash, is_home=False, is_index=False, is
         if tag == 'video':
             async with aiopen(ospath.join(tpath, 'video.html')) as r:
                 poster = f"/api/thumb/{chat_id}?id={message_id}"
-                html = (await r.read()).replace('<!-- Filename -->', filename).replace("<!-- Theme -->", Telegram.THEME).replace('<!-- Poster -->', poster).replace('<!-- Size -->', size)
+                html = (await r.read()).replace('<!-- Filename -->', filename).replace("<!-- Theme -->", Neha.THEMEE).replace('<!-- Poster -->', poster).replace('<!-- Size -->', size)
         else:
             async with aiopen(ospath.join(tpath, 'dl.html')) as r:
-                html = (await r.read()).replace('<!-- Filename -->', filename).replace("<!-- Theme -->", Telegram.THEME).replace('<!-- Size -->', size)
+                html = (await r.read()).replace('<!-- Filename -->', filename).replace("<!-- Theme -->", Neha.THEMEE).replace('<!-- Size -->', size)
     return html
