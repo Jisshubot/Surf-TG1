@@ -11,7 +11,6 @@ class Telegram:
     PORT = int(getenv("PORT", "8080"))
     BASE_URL = getenv("BASE_URL").rstrip('/')
     AUTH_CHANNEL = getenv("AUTH_CHANNEL").split(", ")
-    THEME = getenv("THEME", "cerulean")
     USERNAME = getenv("USERNAME", "admin")
     PASSWORD = getenv("PASSWORD", "admin")
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
