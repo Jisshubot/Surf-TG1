@@ -1,4 +1,4 @@
 from os import getenv
 
 class Neha:
-  THEMEE = getenv("THEMEE", "cerulean")
+  THEMEE = getenv("THEMEE", "Sketchy")
